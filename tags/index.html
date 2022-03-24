@@ -21,12 +21,12 @@
   </script>
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="测试标签页1">
+<meta property="og:title" content="测试">
 <meta property="og:url" content="http://example.com/tags/index.html">
 <meta property="og:site_name" content="测试ing">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-30T13:30:19.000Z">
-<meta property="article:modified_time" content="2021-11-30T13:33:44.866Z">
+<meta property="article:modified_time" content="2022-03-24T03:53:33.951Z">
 <meta property="article:author" content="me01ng">
 <meta name="twitter:card" content="summary">
 
@@ -43,7 +43,7 @@
   };
 </script>
 
-  <title>测试标签页1 | 测试ing
+  <title>测试 | 测试ing
 </title>
   
 
@@ -191,7 +191,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">测试标签页1
+<h1 class="post-title" itemprop="name headline">测试
 </h1>
 
 <div class="post-meta">
@@ -231,19 +231,11 @@
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
             <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-            <li class="tab"><a href="#comment-livere">livere</a></li>
             <li class="tab"><a href="#comment-valine">valine</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane gitalk" id="comment-gitalk">
               <div class="comments" id="gitalk-container"></div>
-            </div>
-            <div class="tab-pane livere" id="comment-livere">
-              
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC81NDg2MS8zMTMzMA=="></div>
-  </div>
-  
             </div>
             <div class="tab-pane valine" id="comment-valine">
               <div class="comments" id="valine-comments"></div>
@@ -365,7 +357,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-me01ng"></i>
   </span>
@@ -466,22 +458,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
 });
 </script>
 
