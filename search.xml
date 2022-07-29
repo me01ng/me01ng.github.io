@@ -13,4 +13,77 @@
         <tag>测试2</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2022/07/29/Selenium%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="Selenium库"><a href="#Selenium库" class="headerlink" title="Selenium库"></a>Selenium库</h1><h3 id="一、安装selenium"><a href="#一、安装selenium" class="headerlink" title="一、安装selenium"></a>一、安装<code>selenium</code></h3><h4 id="1-安装selenium库"><a href="#1-安装selenium库" class="headerlink" title="1.安装selenium库"></a>1.安装selenium库</h4><p>方法一：使用官方地址 </p>
+<p><code>pip install selenium</code></p>
+<p>方法二：使用清华镜像</p>
+<p><code>pip install --index https://mirrors.ustc.edu.cn/pypi/web/simple/selenium</code></p>
+<h4 id="2-安装浏览器驱动"><a href="#2-安装浏览器驱动" class="headerlink" title="2.安装浏览器驱动"></a>2.安装浏览器驱动</h4><p>根据浏览器版本下载</p>
+<p><a href="https://link.zhihu.com/?target=https://github.com/mozilla/geckodriver/releases">Firefox浏览器驱动</a></p>
+<p><a href="https://link.zhihu.com/?target=https://registry.npmmirror.com/binary.html?path=chromedriver/">Chrome浏览器驱动</a></p>
+<p><a href="https://link.zhihu.com/?target=https://github.com/mozilla/geckodriver/releases">Edge浏览器驱动</a></p>
+<p>将浏览器驱动移动到python.exe所在的目录</p>
+<p>或者使用 <code>drive = webdrive.Firefox(&#39;驱动路径&#39;)</code></p>
+<p>最后通过：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line"># 选择浏览器</span><br><span class="line">driver = webdriver.Firefox()</span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">driver = webdriver.Edge()</span><br><span class="line"># 打开网页</span><br><span class="line">url = &#x27;http://www.baidu.com&#x27;</span><br><span class="line">driver.get(url)</span><br></pre></td></tr></table></figure>
+
+<p>如果没有报错则安装正确</p>
+<p>对于新版Edge可能需要：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> msedge.selenium_tools <span class="keyword">import</span> Edge, EdgeOptions</span><br><span class="line">options = EdgeOptions()</span><br><span class="line">options.use_chromium = <span class="literal">True</span></span><br><span class="line">options.binary_location = <span class="string">r&quot;浏览器位置（msedge.exe）&quot;</span></span><br><span class="line">driver = Edge(options=options, executable_path=<span class="string">r&quot;浏览器驱动位置&quot;</span>)</span><br><span class="line">driver.get(<span class="string">&quot;http://www.baidu.com&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、元素定位语句"><a href="#二、元素定位语句" class="headerlink" title="二、元素定位语句"></a>二、元素定位语句</h3><p>元素定位即寻找网页元素的位置</p>
+<h4 id="1-语句-driver-findElement-By-TYPE-39-name-39"><a href="#1-语句-driver-findElement-By-TYPE-39-name-39" class="headerlink" title="1.语句 driver.findElement(By.TYPE,&#39;name&#39;)"></a>1.语句 <code>driver.findElement(By.TYPE,&#39;name&#39;)</code></h4><p>其中TYPE为类型，name为元素名称，可以使用 ID、CssSelector、 LinkText、 Name、 Xpath等多种方式进行定位</p>
+<p>在使用By.TYPE前，我们需要先对By进行调用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-通过Xpath的方式进行定位"><a href="#2-通过Xpath的方式进行定位" class="headerlink" title="2.通过Xpath的方式进行定位"></a>2.通过Xpath的方式进行定位</h4><p>​    带入以上语句：<code>drive.findElement(By.XPATH,&#39;name&#39;)</code></p>
+<p>​    以<a href="https://www.baidu.com/">百度网</a>为例，获取百度图标的Xpath定位</p>
+<img src="https://s2.loli.net/2022/07/29/d2RiC4hTU9srBcF.png" alt="image-20220729171447439" style="zoom: 50%;" />
+
+<p>打开浏览器开发者工具（Ctrl + Shift + I )</p>
+<p>使用元素选择工具（Ctrl + Shift + C )</p>
+<p>鼠标点击百度图标，可以看到右侧出现加深背景文字</p>
+<img src="https://s2.loli.net/2022/07/29/4de3wMog2cHyDkF.png" alt="image-20220729172035294" style="zoom:50%;" />
+
+<p>右键单击，在选项卡中找到复制—Xpath</p>
+<img src="https://s2.loli.net/2022/07/29/Fv4uQTyEH1XJNg7.png" alt="image-20220729172216455" style="zoom:50%;" />
+
+<p>即可获取xpath地址，将其填入上一步的代码<code>name</code>中</p>
+<p><code>drive.findElement(By.XPATH,&#39;//*[@id=&quot;s_mp&quot;]/area&#39;)</code></p>
+<h4 id="3-元素定位后的简单应用"><a href="#3-元素定位后的简单应用" class="headerlink" title="3.元素定位后的简单应用"></a>3.元素定位后的简单应用</h4><p>点击和输入：</p>
+<p><code>driver.findElement(By.XPATH,&#39;name&#39;).click() #单击元素</code></p>
+<p><code>driver.findElement(By.XPATH,&#39;name&#39;).send_keys(&#39;somethings&#39;) #模拟按键输入</code></p>
+<p><code>driver.findElement(By.XPATH,&#39;name&#39;).clear() #清除文本</code></p>
+<h4 id="4-具体案例"><a href="#4-具体案例" class="headerlink" title="4.具体案例"></a>4.具体案例</h4><p>尝试在百度中自动搜索“selenium”</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line">url = <span class="string">&#x27;http://www.baidu.com&#x27;</span></span><br><span class="line">driver.get(url)</span><br><span class="line">input_box = <span class="string">&#x27;//*[@id=&quot;kw&quot;]&#x27;</span>  <span class="comment"># 输入栏xpath地址</span></span><br><span class="line">button = <span class="string">&#x27;//*[@id=&quot;su&quot;]&#x27;</span>  <span class="comment"># 搜索按钮xpath地址</span></span><br><span class="line">driver.find_element(By.XPATH, input_box).send_keys(<span class="string">&#x27;selenium&#x27;</span>)  <span class="comment"># 输入</span></span><br><span class="line">driver.find_element(By.XPATH, button).click()  <span class="comment"># 点击</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-补充"><a href="#5-补充" class="headerlink" title="5.补充"></a>5.补充</h4><p>常用的其他鼠标操作：</p>
+<ul>
+<li>右键单击 <code>context_click()</code></li>
+<li>双击 <code>double_click()</code></li>
+<li>拖动 <code>drag_and_drop()</code></li>
+<li>鼠标悬停 <code>move_to_element()</code></li>
+</ul>
+<p>常用的键盘操作</p>
+<ul>
+<li>send_keys(Keys.BACK_SPACE) 删除键（BackSpace）</li>
+<li>send_keys(Keys.SPACE) 空格键(Space)</li>
+<li>send_keys(Keys.TAB) 制表键(Tab)</li>
+<li>send_keys(Keys.ESCAPE) 回退键（Esc）</li>
+<li>send_keys(Keys.ENTER) 回车键（Enter）</li>
+<li>send_keys(Keys.CONTROL,’a’) 全选（Ctrl+A）</li>
+<li>send_keys(Keys.CONTROL,’c’) 复制（Ctrl+C）</li>
+<li>send_keys(Keys.CONTROL,’x’) 剪切（Ctrl+X）</li>
+<li>send_keys(Keys.CONTROL,’v’) 粘贴（Ctrl+V）</li>
+<li>send_keys(Keys.F1) 键盘 F1</li>
+<li>……</li>
+<li>send_keys(Keys.F12) 键盘 F12</li>
+</ul>
+<h3 id="三、与网页的其他交互"><a href="#三、与网页的其他交互" class="headerlink" title="三、与网页的其他交互"></a>三、与网页的其他交互</h3><p>待续</p>
+<h3 id="四、与网站开发者的斗智斗勇"><a href="#四、与网站开发者的斗智斗勇" class="headerlink" title="四、与网站开发者的斗智斗勇"></a>四、与网站开发者的斗智斗勇</h3><p>待续</p>
+<h3 id="五、综合应用"><a href="#五、综合应用" class="headerlink" title="五、综合应用"></a>五、综合应用</h3><p>待续</p>
+]]></content>
+  </entry>
 </search>
